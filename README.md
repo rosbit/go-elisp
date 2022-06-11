@@ -1,8 +1,8 @@
-# go-elisp, an embedding Lisp
+# go-elisp, an embeddable Lisp
 
 [Zygomys](github.com/glycerine/zygomys) is an embedded scripting language implemented in pure Go.
 
-`go-elisp` is a package extending the Zygomys and making it a **pragmatic embedding** language.
+`go-elisp` is a package extending the Zygomys and making it a **pragmatic embeddable** language.
 With some helper functions provided by `go-elisp`, calling Golang functions or modules from Zygomys, 
 or calling Zygomys functions from Golang are both very simple. So, with the help of `go-elisp`.
 

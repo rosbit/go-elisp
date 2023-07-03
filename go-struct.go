@@ -56,8 +56,11 @@ func getAttrs(structVar, structE reflect.Value, structT reflect.Type, env *zygo.
 	// fmt.Printf("structT.NumField(): %d\n", structT.NumField())
 	for j:=0; j<structT.NumField(); j++ {
 		name := lowerFirst(structT.Field(j).Name)
-		sexps[i] = toValue(name, env); i += 1
 		v := structE.Field(j)
+		if !v.CanInterface() {
+			continue
+		}
+		sexps[i] = toValue(name, env); i += 1
 		// fmt.Printf("j: %d, v: %v\n", j, v)
 		sexps[i] = toValue(v.Interface(), env); i += 1
 	}
@@ -74,6 +77,6 @@ func getAttrs(structVar, structE reflect.Value, structT reflect.Type, env *zygo.
 		_, f, _ :=  bindGoFunc(name, structVar.Method(j))
 		sexps[i] = zygo.MakeUserFunction(name, f); i += 1
 	}
-	return sexps
+	return sexps[:i]
 }
 
